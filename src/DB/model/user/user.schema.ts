@@ -18,7 +18,8 @@ export const userschema = new Schema <IUser>({
     gender:{ type:String,enum:GENDER,default:GENDER.male},
     userAgent:{type:String,enum:USER_AGENT,default:USER_AGENT.local},
     otp:String,
-    otpExpireyAt:Date
+    otpExpireyAt:Date,
+    isVerified:{type:Boolean,default:false}
      
 
 

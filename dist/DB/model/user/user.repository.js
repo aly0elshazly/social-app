@@ -10,5 +10,8 @@ class UserRepository extends abstract_repository_1.AbstractRepository {
     async getAllUsers() {
         return await this.model.find();
     }
+    async getUser(filter) {
+        return await this.model.findOne(filter).select("-password");
+    }
 }
 exports.UserRepository = UserRepository;

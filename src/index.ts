@@ -2,7 +2,7 @@ import express from "express";
 import { bootstrap } from "./app.controller";
 import { config } from "dotenv"; 
 
-config({path:"./config/dev.env"})
+config()
 const app = express();
 const port = 3000;
 

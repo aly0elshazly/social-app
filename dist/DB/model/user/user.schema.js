@@ -19,7 +19,8 @@ exports.userschema = new mongoose_1.Schema({
     gender: { type: String, enum: enum_1.GENDER, default: enum_1.GENDER.male },
     userAgent: { type: String, enum: enum_1.USER_AGENT, default: enum_1.USER_AGENT.local },
     otp: String,
-    otpExpireyAt: Date
+    otpExpireyAt: Date,
+    isVerified: { type: Boolean, default: false }
 }, { timestamps: true });
 exports.userschema.virtual("fullname").get(function () {
     return this.firstname + " " + this.lastname;

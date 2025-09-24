@@ -11,6 +11,7 @@ import { USER_AGENT,GENDER,SYS_ROLE } from "../enum/index";
     gender: GENDER;
     userAgent : USER_AGENT;
     otp?:string;
-    otpExpireyAt?:Date
+    otpExpireyAt?:Date;
+    isVerified:boolean
     
 }

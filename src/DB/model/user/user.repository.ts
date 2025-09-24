@@ -1,4 +1,4 @@
-import { IUser } from "../../../utils/common/interface";
+import { IUser } from "../../../utils";
 import { AbstractRepository } from "../../abstract.repository";
 import { User } from "./user.model";
 
@@ -8,6 +8,9 @@ export class UserRepository extends AbstractRepository<IUser>{
     }
     async getAllUsers(){
         return await this.model.find();
+    }
+    async getUser(filter:Record<string,any>){
+        return await this.model.findOne(filter).select("-password");
     }
 
 }
