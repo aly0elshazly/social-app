@@ -1,8 +1,12 @@
 import { Router } from "express"
-import authservice from "./auth.service";
+import authService from "./auth.service";
+import { isAuthenticated } from "../../middleware/auth.middleware";
 const authrouter = Router();
 
-authrouter.get("/register",authservice.register)
+authrouter.get("/register",authService.register)
+authrouter.get("/verify",authService.verifyAcount)
+authrouter.post("/login",authService.login)
+authrouter.post("/refreshToken",authService.refreshToken)
 
 export default authrouter;
 

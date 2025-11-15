@@ -6,7 +6,8 @@ export const devconfig = {
     PORT : process.env.PORT,
     DB_URL : process.env.DB_URL,
 
-    JWT_SECRET : process.env.JWT_SECRET,
+    JWT_SECRET_A : process.env.JWT_SECRET_A,
+    JWT_SECRET_R : process.env.JWT_SECRET_R,
 
     //cloud
    API_KEY : process.env.API_KEY,

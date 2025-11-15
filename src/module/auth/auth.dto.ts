@@ -7,3 +7,14 @@ export interface registerDTO{
     phonenumber?:string;
     gender:GENDER
 }
+export interface VerifyDTO{
+    email:string;
+    otp:string;
+}
+export interface loginDTO{
+    email:string;
+    password:string;
+}
+export interface refreshTokenDTO{
+    refreshToken:string;
+}

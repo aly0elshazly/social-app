@@ -1,5 +1,5 @@
 import {z} from "zod"
-import { GENDER } from "../../utils/common/enum"
+import { GENDER } from "../../utils/enum"
 
 export const registerSchema = z.object({
     fullname:z.string().min(2).max(20) ,

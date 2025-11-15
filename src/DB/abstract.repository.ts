@@ -1,21 +1,28 @@
-import { Model, MongooseUpdateQueryOptions, ProjectionType, QueryOptions, RootFilterQuery, UpdateWithAggregationPipeline } from "mongoose";
+import { Model, MongooseUpdateQueryOptions, ProjectionType, QueryOptions, RootFilterQuery, UpdateQuery, UpdateWithAggregationPipeline } from "mongoose";
 
 export abstract class AbstractRepository<T>{
     constructor(protected model : Model<T>){}
-    async create(item:Partial <T>){
+    async create(item:Partial <T>):Promise<T & Document>{
         const doc = new this.model(item);
-        return await doc.save();
+        return (await doc.save()) as unknown as  T & Document ;
     }
     async exist(
-        filter:RootFilterQuery<T>,
-        projection?:ProjectionType<T>,
-        options?:QueryOptions<T>
-    ){
-        return await this.model.findOne(filter,projection,options);
-    }
+        filter: RootFilterQuery<T>,
+        projection?: ProjectionType<T>,
+        options?: QueryOptions<T> & { populate?: any }
+      ) {
+        let query = this.model.findOne(filter, projection);
+      
+        if (options?.populate) {
+          query = query.populate(options.populate);
+        }
+      
+        return await query;
+      }
+      
     async update(
         filter:RootFilterQuery<T>,
-        update:Partial<T>,
+        update:UpdateQuery<T>,
         options?:MongooseUpdateQueryOptions
 
 
@@ -25,6 +32,6 @@ export abstract class AbstractRepository<T>{
     async delete(
         filter:RootFilterQuery<T>
     ){
-        return await this.model.deleteOne()
+        return await this.model.deleteOne(filter)
     }
 }

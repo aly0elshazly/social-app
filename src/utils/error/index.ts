@@ -31,3 +31,10 @@ export class BadRequestException extends AppError{
 }
 
 
+export class forBiddenException extends AppError{
+    constructor(message:string,errorDetails?:Record<string,any>[]){
+        super(message,403,errorDetails)
+    }
+}
+
+
